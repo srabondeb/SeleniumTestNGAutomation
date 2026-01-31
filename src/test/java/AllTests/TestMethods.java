@@ -20,7 +20,6 @@ public class TestMethods extends BeforeAfterMethods {
         driver.findElement(state).sendKeys("Virginia");
         driver.findElement(zip).sendKeys("20109");
         driver.findElement(country).sendKeys("Prince William");
-
         //wait 2 second to inspect all the boxes
         Thread.sleep(2000);
     }
