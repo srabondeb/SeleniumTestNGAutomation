@@ -46,7 +46,6 @@ public class TestMethods extends BeforeAfterMethods {
 
     }
 
-
     @Test(priority = 2)
     public void checkBoxTest() throws InterruptedException{
         By box1 = By.id("checkbox-1");
