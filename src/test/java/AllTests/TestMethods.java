@@ -2,9 +2,12 @@ package AllTests;
 
 import TestSetBreak.BeforeAfterMethods;
 import org.openqa.selenium.By;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import javax.swing.*;
 
 public class TestMethods extends BeforeAfterMethods {
 
@@ -57,6 +60,26 @@ public class TestMethods extends BeforeAfterMethods {
                 driver.findElement(box1).isSelected(),"The box1 failed checked"
         );
     }
+
+    @Test(priority = 3)
+    public void DragAndDropTest() throws InterruptedException{
+        By element = By.xpath("//*[@id=\"image\"]/img");
+        By box = By.xpath("//*[@id=\"box\"]");
+
+        driver.get("https://formy-project.herokuapp.com/dragdrop");
+        Actions action = new Actions(driver);
+        Thread.sleep(1000);
+         action.dragAndDrop(driver.findElement(element), driver.findElement(box)).perform();
+        Thread.sleep(1000);
+         Assert.assertEquals(
+                 driver.findElement(box).getText(),"Dropped!","drag and drop Failed"
+         );
+
+   }
+
+
+
+
 
 
 }
