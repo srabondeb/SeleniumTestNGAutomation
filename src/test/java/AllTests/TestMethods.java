@@ -77,6 +77,16 @@ public class TestMethods extends BeforeAfterMethods {
 
    }
 
+   @Test(priority = 4)
+    public void StaticDropDownTest() throws InterruptedException{
+        driver.get("https://formy-project.herokuapp.com/dropdown");
+        By dropDownButton = By.id("dropdownMenuButton");
+       Thread.sleep(1000);
+        driver.findElement(dropDownButton).click();
+       Thread.sleep(1000);
+   }
+
+
 
 
 
