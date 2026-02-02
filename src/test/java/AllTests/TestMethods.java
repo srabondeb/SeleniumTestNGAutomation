@@ -2,12 +2,17 @@ package AllTests;
 
 import TestSetBreak.BeforeAfterMethods;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import javax.swing.*;
+import java.io.File;
 
 public class TestMethods extends BeforeAfterMethods {
 
@@ -85,6 +90,36 @@ public class TestMethods extends BeforeAfterMethods {
         driver.findElement(dropDownButton).click();
        Thread.sleep(1000);
    }
+/*
+   @Test(priority = 6)
+    public void DynamicDropDownTest(){
+        driver.get("https://www.amazon.com/s?k=guiter&ref=nb_sb_noss");
+        By dropdownButton = By.xpath("//*[@id=\"nav_link_allhealthingress\"]/a/span");
+
+
+   }*/
+
+   @Test(priority = 7)
+    public void fileUploadAndScreenShotTest() throws Exception{
+        driver.get("https://formy-project.herokuapp.com/fileupload");
+        By uploadField = By.id("file-upload-field");
+       File file = new File("/Users/srabondebnath/Desktop/AProudMoment.jpeg");
+
+       driver.findElement(uploadField).sendKeys(file.getAbsolutePath());
+       System.out.println(file.getName());
+       Thread.sleep(1000);
+
+       File screenShot= ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+       FileHandler.copy(screenShot,new File("uploaded.png"));
+
+   }
+
+   @Test(priority = 8)
+    public void ScreenShotTest(){
+
+   }
+
+
 
 
 
