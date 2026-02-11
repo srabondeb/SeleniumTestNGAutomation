@@ -1,18 +1,18 @@
 package AllTests;
 
 import TestSetBreak.BeforeAfterMethods;
-import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import javax.swing.*;
 import java.io.File;
+import java.sql.Driver;
+import java.time.Duration;
 
 public class TestMethods extends BeforeAfterMethods {
 
@@ -90,14 +90,25 @@ public class TestMethods extends BeforeAfterMethods {
         driver.findElement(dropDownButton).click();
        Thread.sleep(1000);
    }
-/*
+
    @Test(priority = 6)
-    public void DynamicDropDownTest(){
-        driver.get("https://www.amazon.com/s?k=guiter&ref=nb_sb_noss");
-        By dropdownButton = By.xpath("//*[@id=\"nav_link_allhealthingress\"]/a/span");
+    public void MouseHoverAndDynamicDropDownTest(){
+        driver.get("https://www.amazon.com/");
 
+        By dropdownButton = By.xpath("//*[@id=\"nav-link-accountList\"]/a/span");
+       WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+       WebElement task=wait.until(ExpectedConditions.visibilityOfElementLocated(dropdownButton));
 
-   }*/
+       Actions actions = new Actions(driver);
+       actions.moveToElement(task).perform();
+
+       WebElement orders = wait.until(
+               ExpectedConditions.visibilityOfElementLocated(By.linkText("Your Orders"))
+       );
+
+       System.out.println("Mouse hover successful, dropdown visible.");
+
+   }
 
    @Test(priority = 7)
     public void fileUploadAndScreenShotTest() throws Exception{
@@ -112,18 +123,22 @@ public class TestMethods extends BeforeAfterMethods {
        File screenShot= ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
        FileHandler.copy(screenShot,new File("uploaded.png"));
 
-   }
-
-   @Test(priority = 8)
-    public void ScreenShotTest(){
 
    }
 
+/*
 
 
+    @Test(priority=8)
+    public void DataDrivenLoginTest(){
 
+    }
 
+    @Test(priority=9)
+    public void AlertTest(){
 
+    }
+*/
 
 
 
